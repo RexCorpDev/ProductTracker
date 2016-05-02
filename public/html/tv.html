@@ -1,0 +1,63 @@
+<!-- TEMPLATES -->
+<div class="template-header text-center">
+  <i class="fa fa-tv fa-5x fa-fw margin-bottom"></i>
+  <br>
+  <h1 class="text-center">TV's</h1>
+  <div class="container text-center">
+    <label class="col-lg-6 text-center">
+      Search:
+      <input ng-model='searchFilter' type="text" class="form-control">
+    </label>
+    <label class="col-lg-6 text-center">
+      Sort By:
+      <input ng-model='sortOrder' type="text" class="form-control">
+    </label>
+  </div>
+
+  <table class="table">
+    <tbody>
+      <tr >
+        <td class="col-xs-2">
+          <p ng-click='sortBy("Image")'><b>Image</p>
+          </td>
+          <td class="col-xs-2">
+            <p ng-click='sortBy("Brand")'><b>  Brand </p>
+            </td>
+            <td class="col-xs-2">
+              <p ng-click='sortBy("Detail")'><b>  Detail </p>
+              </td>
+              <td class="col-xs-2">
+                <p ng-click='sortBy("Price")'> <b> Price </p>
+                </td>
+                <td class="text-center col-xs-2">
+                  <p ng-click='sortBy("Details")'><b>  Details  </p>
+                  </td>
+                </tr>
+                <tr ng-repeat='tv in tvs  | filter:searchFilter | orderBy:sortOrder track by $index'>
+                  <td class="col-xs-2">
+                    <p><img ng-src="{{ tv.image }}"></p>
+                  </td>
+                  <td class="col-xs-2">
+                    <p>  {{ tv.brand }} </p>
+                  </td>
+                  <td class="col-xs-2">
+                    <p>  {{ tv.detail }}</p>
+                  </td>
+                  <td class="col-xs-2">
+                    <p>  {{ tv.price | currency }}</p>
+                  </td>
+                  <td class="text-center col-xs-2">
+                    <a href="{{ tv.link }}">  <i class="fa fa-{{ tv.vendor }} fa-2x fa-fw margin-bottom"></i></a>
+                  </td>
+                </tr>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="text-center">
+                <td><i class="fa fa-shopping-cart fa-2x fa-fw margin-bottom"></i>Items:</td>
+              </tr>
+              <td> Total: {{totalCredit | currency}}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
